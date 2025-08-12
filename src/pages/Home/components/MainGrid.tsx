@@ -29,6 +29,10 @@ export const MainGrid = () => {
   }, [products]);
 
   useEffect(() => {
+    setData(products.products);
+  }, [products]);
+
+  useEffect(() => {
     if (ActiveFilters.length > 0) {
       setData(
         products.products.filter((item) =>
@@ -47,7 +51,7 @@ export const MainGrid = () => {
   }, [data]);
 
   return (
-    <div className="h-full w-full lg:px-[200px] lg:py-20">
+    <div className="w-full lg:px-[200px] lg:py-20 products-grid">
       <Filter
         filters={filters}
         setActiveFilters={setActiveFilters}

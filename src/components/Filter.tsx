@@ -22,7 +22,7 @@ export const Filter = ({
   };
 
   return (
-    <div className="flex w-full h-full gap-5 items-center justify-end pb-10 border-b-1 border-gray-200">
+    <div className="flex w-full gap-5 items-center justify-end pb-10">
       <LargeFilter
         handleClick={handleClick}
         filters={filters}

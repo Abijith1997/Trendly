@@ -7,7 +7,6 @@ import { Toaster } from "react-hot-toast";
 import store from "./store/store";
 import { MainLayout } from "./layout/MainLayout";
 import { OtherLayout } from "./layout/OtherLayout";
-import { Products } from "./pages/Products/Products";
 import { Product } from "./pages/Product/Product";
 import { AboutPage } from "./pages/About/AboutPage";
 import { ContactPage } from "./pages/Contact/ContactPage";
@@ -19,13 +18,13 @@ import { PageNotFound } from "./pages/PageNotFound";
 
 export const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Trendly/">
       <ScrollToTop>
         <Provider store={store}>
           <Routes>
             <Route element={<MainLayout />}>
               <Route path="/" element={<Home />} />
-              <Route path="/product" element={<Products />} />
+
               <Route path="/product/:id" element={<Product />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />

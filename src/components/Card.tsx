@@ -1,18 +1,17 @@
 import { IconShoppingCart } from "@tabler/icons-react";
 import type { ProductProps } from "../types/types";
 import { StarRating } from "./StarRating";
-
-interface StarRatingProps {
-  rating: number; // e.g., 3.7
-  totalStars?: number; // default 5
-  size?: number; // px size of each star, default 20
-  filledColor?: string; // color of filled stars
-  emptyColor?: string; // color of empty stars
-}
+import { useNavigate } from "react-router-dom";
 
 export const Card = ({ data }: { data: ProductProps }) => {
+  const navigate = useNavigate();
   return (
-    <div className="w-[400px] cursor-pointer h-[500px] border-1 border-gray-200 flex flex-col items-center justify-start gap-5 hover:shadow-lg rounded-md px-10 py-5">
+    <div
+      className="w-[400px] cursor-pointer h-[500px] border-1 border-gray-200 flex flex-col items-center justify-start gap-5 hover:shadow-lg rounded-md px-10 py-5"
+      onClick={() =>
+        navigate(`/product/${data.id}`, { state: { product: data } })
+      }
+    >
       <div className="product-image w-[290px] h-[300px] overflow-hidden">
         <img
           src={data.image}

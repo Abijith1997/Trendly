@@ -1,4 +1,4 @@
-import { IconMenu, IconShoppingCart, IconUser } from "@tabler/icons-react";
+import { IconMenu, IconShoppingCart } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -32,6 +32,18 @@ export const SmallNavBar = () => {
     setRightbarActive(false);
   };
 
+  const handleClick = () => {
+    if (location.pathname === "/") {
+      // Already on home → just scroll
+      document.querySelector(".products-grid")?.scrollIntoView({
+        behavior: "smooth",
+      });
+    } else {
+      // Navigate home and pass state to scroll after load
+      navigate("/", { state: { scrollTo: "products-grid" } });
+    }
+  };
+
   return (
     <div className="links-group flex md:hidden justify-between items-center gap-10 [&>div]:hover:bg-blue-200 [&>div]:cursor-pointer [&>div]:px-3 [&>div]:py-2 [&>div]:rounded-lg">
       <div
@@ -49,7 +61,7 @@ export const SmallNavBar = () => {
           <div className="top-group w-full px-5 py-2 gap-5 flex flex-col items-center justify-between">
             <div
               className="links w-full text-center hover:bg-blue-200 p-2 px-4 cursor-pointer rounded"
-              onClick={() => handleNavigate("products")}
+              onClick={handleClick}
             >
               Products
             </div>

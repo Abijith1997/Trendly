@@ -5,8 +5,10 @@ interface ProductsState {
   products: ProductProps[];
 }
 
+// Load from localStorage on init
+const savedProducts = localStorage.getItem("products");
 const initialState: ProductsState = {
-  products: [],
+  products: savedProducts ? JSON.parse(savedProducts) : [],
 };
 
 const productsSlice = createSlice({
@@ -15,10 +17,16 @@ const productsSlice = createSlice({
   reducers: {
     fetchProductsSuccess(state, action: PayloadAction<ProductProps[]>) {
       state.products = action.payload;
+
+      // Save to localStorage for persistence
+      localStorage.setItem("products", JSON.stringify(state.products));
+    },
+    clearProducts(state) {
+      state.products = [];
+      localStorage.removeItem("products");
     },
   },
 });
 
-export const { fetchProductsSuccess } = productsSlice.actions;
-
+export const { fetchProductsSuccess, clearProducts } = productsSlice.actions;
 export default productsSlice.reducer;

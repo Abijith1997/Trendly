@@ -34,7 +34,7 @@ function Home() {
   }, [data]);
 
   return (
-    <div className=" lg:px-30 px-10 flex items-center justify-start flex-col w-full h-full gap-10">
+    <div className="lg:px-30 px-10 flex items-center justify-start flex-col w-full h-full gap-10">
       {loading ? (
         <>
           <div className="h-full w-full flex items-center justify-center">

@@ -24,9 +24,22 @@ export const LargeNavBar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [ddmActive]);
+
+  const handleClick = () => {
+    if (location.pathname === "/") {
+      // Already on home → just scroll
+      document.querySelector(".products-grid")?.scrollIntoView({
+        behavior: "smooth",
+      });
+    } else {
+      // Navigate home and pass state to scroll after load
+      navigate("/", { state: { scrollTo: "products-grid" } });
+    }
+  };
+
   return (
     <div className="links-group hidden md:flex justify-between items-center gap-10 [&>div]:hover:bg-blue-200 [&>div]:cursor-pointer [&>div]:px-3 [&>div]:py-2 [&>div]:rounded-lg">
-      <div className="links" onClick={() => navigate("/products")}>
+      <div className="links" onClick={handleClick}>
         Products
       </div>
       <div className="links" onClick={() => navigate("/about")}>
